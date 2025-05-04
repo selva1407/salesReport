@@ -1,0 +1,68 @@
+.salesTable {
+  min-width: 100%;
+  /*border-collapse: collapse;*/
+  border: 2px solid #d5d1defe;
+  border-radius: 10px;
+  border-spacing: 0;
+}
+
+.salesTable tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.salesTable tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.salesTable tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.salesTable tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+.salesTable thead {
+  background-color: var(--primary-color);
+  color: var(--sidebar-bg-color);
+  position:sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.salesTable thead th:last-child {
+  text-align: right;
+}
+
+.salesTable thead th:nth-child(4) {
+  text-align: left;
+}
+
+.salesTable th,
+.salesTable td {
+  padding: 10px;
+}
+
+.salesTable tbody tr:nth-child(even) {
+  background-color: #d5d1defe;
+}
+
+.salesTable tbody td:first-child,
+.salesTable tbody td:nth-child(2),
+.salesTable tbody td:nth-child(3){
+  text-align: center;
+}
+
+
+.salesTable tbody td:last-child {
+  text-align: right;
+}
+
+.salesTable tbody tr .sales-loading {
+  text-align: center;
+}
+
+.select {
+  z-index: 100;
+  width: 200px;
+}
