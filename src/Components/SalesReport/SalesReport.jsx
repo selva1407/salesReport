@@ -14,7 +14,7 @@ const SalesReport = () => {
   const [data, setData] = useState([]);
   const [fetchError, setFetchError] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(0)
   const [postPerPage, setPostPerPage] = useState(25)
   
   const [partyOptions, setPartyOptions] = useState([]);
@@ -53,10 +53,10 @@ const SalesReport = () => {
   },[])
   
   useEffect(() => {
-  setCurrentPage(1);
+  setCurrentPage(0);
 }, [partySelect,range]);
   
-  const indexOfLastPost = currentPage * postPerPage
+  const indexOfLastPost = (currentPage + 1) * postPerPage
   const indexOfFirstPost = indexOfLastPost - postPerPage
   
   const filteredData = partySelect ? data.filter((item) => item.PARTYNAME === partySelect) : data;
@@ -78,7 +78,7 @@ const SalesReport = () => {
   
   const handlePageClick = (e) => {
     
-    setCurrentPage(e.selected + 1)
+    setCurrentPage(e.selected)
   }
   
   const defaultPartySelect = {
@@ -116,11 +116,11 @@ const SalesReport = () => {
         <p>{`Total : ${filteredByDate.length}`}</p>
         <div>
           <input
-            type="number"
-            min="1"
+            min={1}
             max={totalPages}
-            value={currentPage}
-            onChange={(e) => setCurrentPage(e.target.value)}
+            value={currentPage + 1}
+            onChange={(e) => setCurrentPage(e.target.value -1) // convert to 0-based
+              }
           />
           <ReactPaginate 
             previousLabel = {"<<"}
@@ -133,7 +133,7 @@ const SalesReport = () => {
             containerClassName = {"pagination"}
             renderOnZeroPageCount={null}
             activeClassName = {"paginate-active"}
-            //forcePage={currentPage}
+            forcePage={currentPage}
           />
         </div>
       </section>

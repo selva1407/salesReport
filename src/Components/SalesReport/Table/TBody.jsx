@@ -6,8 +6,8 @@ const TBody = ({data, currentPage, postPerPage}) => {
     <>
       {
         data.map((data, index) => (
-          <tr key = {data.VchId}>
-            <td>{(currentPage - 1) * postPerPage + index + 1}</td>
+          <tr key = {data.VchId || index}>
+            <td>{(currentPage) * postPerPage + index + 1}</td>
             <td>{data.DATE}</td>
             <td>{data.VOUCHERNUMBER}</td>
             <td>{data.PARTYNAME}</td>
