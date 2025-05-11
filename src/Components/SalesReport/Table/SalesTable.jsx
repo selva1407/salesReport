@@ -11,7 +11,11 @@ const SalesTable = ({data,fetchError, isLoading, currentPage, postPerPage}) => {
             <th>Date</th>
             <th>Vch No</th>
             <th>Customer</th>
-            <th>Amount</th>
+            <th>Voucher Type</th>
+            <th>Ledger Group</th>
+            <th>Taxable Amount</th>
+            <th>Tax Amount</th>
+            <th>Invoice Amount</th>
           </tr>
         </thead>
         <tbody>

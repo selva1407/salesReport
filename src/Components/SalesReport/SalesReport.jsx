@@ -7,6 +7,7 @@ import { addDays, startOfMonth, endOfMonth } from "date-fns";
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import DateRangeComponent from "./DateRangeComponent/DateRangeComponent"
+import VoucherTypeFilter from "./VoucherTypeFilter/VoucherTypeFilter"
 
 const SalesReport = () => {
   
@@ -19,6 +20,9 @@ const SalesReport = () => {
   
   const [partyOptions, setPartyOptions] = useState([]);
   const [partySelect, setPartySelect] = useState("");
+  
+  const [vchTypeOptions, setVchTypeOptions] = useState([]);
+  const [vchTypeSelect, setVchTypeSelect] = useState("");
   
   const [range, setRange] = useState([
     {
@@ -38,8 +42,11 @@ const SalesReport = () => {
         
         const partyListOption = Array.from(
         new Map(result.map((item) => [item.PARTYNAME, { value: item.PARTYNAME, label: item.PARTYNAME }])).values()
-      );
-        setPartyOptions(partyListOption)
+        );
+        setPartyOptions(partyListOption);
+        
+        const vchTypeList = Array.from(new Map(result.map((item) => [item.VOUCHERTYPENAME, {value:item.VOUCHERTYPENAME}])).values());
+        setVchTypeOptions(vchTypeList);
       }catch(err) {
         setFetchError(err.message)
       }finally {
@@ -69,6 +76,19 @@ const SalesReport = () => {
   const itemDate = new Date(year, month - 1, day); // month -1 because JavaScript months are 0-indexed
     return itemDate >= range[0].startDate && itemDate <= range[0].endDate;
   })
+  .sort((a, b) => {
+    const [dayA, monthA, yearA] = a.DATE.split('-').map(Number);
+    const [dayB, monthB, yearB] = b.DATE.split('-').map(Number);
+
+    const dateA = new Date(yearA, monthA - 1, dayA);
+    const dateB = new Date(yearB, monthB - 1, dayB);
+
+    // For ascending order
+    return dateB - dateA;
+
+    // For descending order, reverse it:
+    // return dateB - dateA;
+  });
   
   const currentPost = filteredByDate.slice(indexOfFirstPost, indexOfLastPost);
   
@@ -102,6 +122,12 @@ const SalesReport = () => {
           range = {range}
           setRange = {setRange}
         />
+        <VoucherTypeFilter 
+          vchTypeOptions = {vchTypeOptions}
+          setVchTypeOptions = {setVchTypeOptions}
+          vchTypeSelect = {vchTypeSelect}
+          setVchTypeSelect = {setVchTypeSelect}
+        />
       </form>
       <section className = "table-container">
         <SalesTable
@@ -115,13 +141,15 @@ const SalesReport = () => {
       <section className = "sales-total">
         <p>{`Total : ${filteredByDate.length}`}</p>
         <div>
-          <input
-            min={1}
-            max={totalPages}
-            value={currentPage + 1}
-            onChange={(e) => setCurrentPage(e.target.value -1) // convert to 0-based
-              }
-          />
+          {filteredByDate.length !== 0 && (
+            <input
+              min={1}
+              max={totalPages}
+              value={currentPage + 1}
+              onChange={(e) => setCurrentPage(e.target.value -1) // convert to 0-based
+                }
+            />
+          )}
           <ReactPaginate 
             previousLabel = {"<<"}
             nextLabel = {">>"}

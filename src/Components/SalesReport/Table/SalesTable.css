@@ -1,4 +1,11 @@
+.table-container {
+  /*width:calc(100vw - 20px - 80px);*/
+  overflow-x: scroll;
+}
+
 .salesTable {
+  table-layout: auto;
+  width: max-content;
   min-width: 100%;
   /*border-collapse: collapse;*/
   border: 2px solid #d5d1defe;
@@ -58,6 +65,7 @@
   text-align: right;
 }
 
+
 .salesTable tbody tr .sales-loading {
   text-align: center;
 }
@@ -65,4 +73,22 @@
 .select {
   z-index: 100;
   width: 200px;
+}
+
+.salesTable tbody .date {
+  width: 100px;
+}
+
+.salesTable tbody .vchNo {
+  min-width: 100px;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.salesTable tbody .party {
+  white-space: nowrap;
+}
+
+.salesTable tbody .amount {
+  text-align: right;
 }
