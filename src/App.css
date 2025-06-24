@@ -30,12 +30,12 @@ body {
   /*position: relative;*/
   /*left: 80px;*/
   /*width: calc(100vw - 80px);*/
-  width: calc(100vw - 20px - 80px);
+  width: calc(100vw - 20px - 7rem);
   margin:10px 0 10px 80px;
   transition: all 0.2s ease;
   background-color: white;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
 }
 
 /*.sidebar:hover ~ .main {

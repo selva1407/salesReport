@@ -1,0 +1,72 @@
+
+.sales-Item-pie {
+  margin: 10px 0 10px 0;
+  /*width: calc(100vw - 20px - 7rem);*/
+  box-shadow: 0 0 5px grey;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(249,250,251);
+  width: 50%;
+  position: relative;
+  
+  .download-btn {
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .download-btn:hover {
+    background-color: #0056b3;
+  }
+}
+
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  min-height: 300px;
+}
+
+.pie-calendar .calendarElement {
+  position: fixed;
+}
+
+.pie-zoom {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 25px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.sales-Item-pie-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100vw;
+  z-index: 1000;
+  /*background-color: rgba(255,255,255,0.5);*/
+  backdrop-filter: blur(5px);
+
+  .sales-Item-pie-zoom {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    width: calc(100vw - 40px);
+    z-index: 1000;
+    
+    .sales-Item-pie {
+      width: 100%;
+    }
+  }
+}

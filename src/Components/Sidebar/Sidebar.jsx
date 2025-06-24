@@ -1,6 +1,6 @@
 import "./Sidebar.css"
 import logo from "../../assets/openAi.png"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { FaHome } from "react-icons/fa"
 import { BiBarChartAlt2 } from "react-icons/bi"
 
@@ -16,16 +16,16 @@ const Sidebar = () => {
       <main className = "menu-bar">
         <ul className = "menu-links">
           <li className = "nav-link">
-            <Link to = "/">
+            <NavLink to = "/">
               <FaHome className = "icon"/>
               <p className = "text">Dashboard</p>
-            </Link>
+            </NavLink>
           </li>
           <li className = "nav-link">
-            <Link to = "/sales-report">
+            <NavLink to = "/sales-report">
               <BiBarChartAlt2 className = "icon"/>
               <p className = "text">Sales Report</p>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </main>

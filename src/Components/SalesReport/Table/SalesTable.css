@@ -1,6 +1,7 @@
 .table-container {
   /*width:calc(100vw - 20px - 80px);*/
   overflow-x: scroll;
+  font-size: .8rem;
 }
 
 .salesTable {

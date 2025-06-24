@@ -70,7 +70,6 @@ const DateRangeComponent = ({range, setRange}) => {
   
   return (
     <div className="calendarWrap">
-
       <input
         value={`${format(range[0].startDate, "dd/MM/yyyy")} to ${format(range[0].endDate, "dd/MM/yyyy")}`}
         readOnly

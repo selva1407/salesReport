@@ -29,7 +29,7 @@ const SalesTable = ({data,fetchError, isLoading, currentPage, postPerPage}) => {
               <td colSpan = "5">{fetchError}</td>
             </tr>
             )}
-            {!data?.length && !isLoading && (
+            {!data?.length && !isLoading && !fetchError && (
               <tr>
               <td colSpan = "5" className = "sales-loading">Data not found</td>
             </tr>

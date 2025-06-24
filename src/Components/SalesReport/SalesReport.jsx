@@ -8,6 +8,7 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import DateRangeComponent from "./DateRangeComponent/DateRangeComponent"
 import VoucherTypeFilter from "./VoucherTypeFilter/VoucherTypeFilter"
+import SalesItemPieChart from "./SalesItemPieChart/SalesItemPieChart"
 
 const SalesReport = () => {
   
@@ -31,6 +32,8 @@ const SalesReport = () => {
       key: 'selection'
     }
   ])
+  
+  const [pieChartZoom, setPieChartZoom] = useState(false)
   
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +69,7 @@ const SalesReport = () => {
   const indexOfLastPost = (currentPage + 1) * postPerPage
   const indexOfFirstPost = indexOfLastPost - postPerPage
   
-  const filteredData = partySelect ? data.filter((item) => item.PARTYNAME === partySelect) : data;
+  const filteredData = data.filter((item) => !partySelect || item.PARTYNAME === partySelect).filter((item) => !vchTypeSelect || item.VOUCHERTYPENAME === vchTypeSelect);
   
   /*const currentPost = data.slice(indexOfFirstPost, indexOfLastPost)
   */
@@ -109,7 +112,22 @@ const SalesReport = () => {
   
   return (
     <main className = "main">
-      <h1>Sales Report</h1>
+      <h1>Sales Analysis</h1>
+      <SalesItemPieChart 
+        salesData = {data}
+        pieChartZoom = {pieChartZoom}
+        setPieChartZoom = {setPieChartZoom}
+      />
+      {pieChartZoom && (
+        <div className ="sales-Item-pie-container">
+          <div className ="sales-Item-pie-zoom">
+            <SalesItemPieChart 
+              salesData = {data}
+              pieChartZoom = {pieChartZoom}
+              setPieChartZoom = {setPieChartZoom}
+            />
+          </div>
+        </div>)}
       <form className = "filter-form">
         <Select 
           className = "select"

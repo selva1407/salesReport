@@ -77,3 +77,12 @@
 .sidebar:hover .text {
   display: block;
 }
+
+.sidebar .active {
+  background-color:var(--primary-color);
+  
+  .icon,
+  .text{
+    color:var(--sidebar-text-color);
+  }
+}
